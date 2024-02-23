@@ -6,7 +6,7 @@ export const ImageGallery = ({ items }) => {
       {items.map((item) => {
         return (
           <ImageCard
-            keyId={item.id}
+            key={item.id}
             url={item.urls.small}
             altName={item.alt_description}
             likes={item.likes}

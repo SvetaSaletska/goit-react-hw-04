@@ -1,7 +1,8 @@
-export const ImageCard = () => {
+export const ImageCard = ({ url, altName, likes }) => {
   return (
     <div>
-      <img src="" alt="" />
+      <img src={url} alt={altName} />
+      <p>Likes: {likes}</p>
     </div>
   );
 };

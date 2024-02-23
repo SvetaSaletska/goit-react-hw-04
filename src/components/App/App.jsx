@@ -7,6 +7,8 @@ import { ImageGallery } from "../ImageGallery/ImageGallery";
 export const App = () => {
   const accessKey = "l4xYo5foTcEtYf4LKVHijcpD9g7msckFKhsP7uMi2GA";
   const [articles, setArticles] = useState([]);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const searchImages = async () => {
     try {
@@ -14,7 +16,11 @@ export const App = () => {
         `https://api.unsplash.com/photos/?client_id=${accessKey}`
       );
       setArticles(response.data.hits);
-    } catch (error) {}
+    } catch (error) {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   // useEffect(() => {
@@ -30,7 +36,10 @@ export const App = () => {
   return (
     <div>
       <SearchBar onSearch={searchImages} />
-      {articles.length > 0 && <ImageGallery />}
+      {error && <b>Oops, there was an error, please try reloading 😭</b>}
+      {loading && <b>Loading articles, please wait...</b>}
+
+      <ImageGallery items={articles} />
     </div>
   );
 };
