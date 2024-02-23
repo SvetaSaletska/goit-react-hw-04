@@ -10,12 +10,12 @@ export const App = () => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const searchImages = async () => {
+  const searchImages = async (query) => {
     try {
       const response = await axios.get(
-        `https://api.unsplash.com/photos/?client_id=${accessKey}`
+        `https://api.unsplash.com/search/photos?client_id=${accessKey}&page=1&query=${query}&per_page=12`
       );
-      setArticles(response.data.hits);
+      setArticles(response.data);
     } catch (error) {
       setError(true);
     } finally {
