@@ -1,25 +1,25 @@
-import { useState } from "react";
-import axios from "axios";
+import { useState, useEffect } from "react";
 import "../App/App.module.css";
 import { SearchBar } from "../SearchBar/SearchBar";
 import { ImageGallery } from "../ImageGallery/ImageGallery";
 import { Loader } from "../Loader/Loader";
 import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
 import { LoadMoreBtn } from "../LoadMoreBtn/LoadMoreBtn";
+import { fetchImages } from "../../articles-api";
 
 export const App = () => {
-  const accessKey = "l4xYo5foTcEtYf4LKVHijcpD9g7msckFKhsP7uMi2GA";
+  // const accessKey = "l4xYo5foTcEtYf4LKVHijcpD9g7msckFKhsP7uMi2GA";
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
-  const [articles, setArticles] = useState([]);
+  const [images, setImages] = useState([]);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const searchImages = async (newQuery) => {
+  const searchImages = (newQuery) => {
     setQuery(newQuery);
     // setError(false);
     // setLoading(true);
-    setArticles([]);
+    setImages([]);
     setPage(1);
   };
 
@@ -32,30 +32,34 @@ export const App = () => {
       return;
     }
 
-    async function fetchData() {
+    async function getImages() {
       try {
         setError(false);
         setLoading(true);
         // setArticles([]);
-        const { data } = await axios.get(
-          `https://api.unsplash.com/search/photos?client_id=${accessKey}&page=1&query=${query}&per_page=12`
-        );
+        // const { data } = await axios.get(
+        //   `https://api.unsplash.com/search/photos?client_id=${accessKey}&page=1&query=${query}&per_page=12`
+        // );
+
+        const data = await fetchImages(query, page);
 
         // setArticles(data.results);
 
-        setArticles((prevArticles) => [...prevArticles, ...data.results]);
+        setImages((prevImages) => {
+          return [...prevImages, ...data];
+        });
       } catch (error) {
         setError(true);
       } finally {
         setLoading(false);
       }
 
-      const response = await axios.get(
-        `https://api.unsplash.com/photos/?client_id=${accessKey}`
-      );
-      setArticles(response.data.hits);
+      // const response = await axios.get(
+      //   `https://api.unsplash.com/photos/?client_id=${accessKey}`
+      // );
+      // setArticles(response.data.hits);
     }
-    fetchData();
+    getImages();
   }, [query, page]);
 
   return (
@@ -66,7 +70,7 @@ export const App = () => {
 
       {loading && <Loader />}
 
-      <ImageGallery items={articles} />
+      <ImageGallery items={images} />
       <LoadMoreBtn onClick={handleLoadMore} />
     </div>
   );
