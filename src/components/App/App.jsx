@@ -38,7 +38,7 @@ export const App = () => {
         // );
 
         const data = await fetchImages(query, page);
-
+        console.log(data);
         setImages((prevImages) => {
           return [...prevImages, ...data];
         });

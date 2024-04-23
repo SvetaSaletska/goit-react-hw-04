@@ -12,5 +12,5 @@ export const fetchImages = async (query, page) => {
       hitsPerPage: 12,
     },
   });
-  return response.data;
+  return response.data.results;
 };
