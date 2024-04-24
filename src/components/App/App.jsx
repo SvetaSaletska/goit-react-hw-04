@@ -6,6 +6,7 @@ import { Loader } from "../Loader/Loader";
 import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
 import { LoadMoreBtn } from "../LoadMoreBtn/LoadMoreBtn";
 import { fetchImages } from "../../articles-api";
+import { ImageModal } from "../ImageModal/ImageModal";
 
 export const App = () => {
   const [query, setQuery] = useState("");
@@ -13,6 +14,8 @@ export const App = () => {
   const [images, setImages] = useState([]);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [selectedCard, setSelectedcard] = useState(null);
+  const [modalIsOpen, setIsOpen] = useState(false);
 
   const searchImages = (newQuery) => {
     setQuery(newQuery);
@@ -51,12 +54,30 @@ export const App = () => {
     getImages();
   }, [query, page]);
 
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  const onClickModal = (id) => {
+    setSelectedcard(images.find((item) => item.id === id));
+    openModal();
+  };
+
   return (
     <div>
       <SearchBar onSearch={searchImages} />
       {error && <ErrorMessage />}
       {loading && <Loader />}
-      <ImageGallery items={images} />
+      <ImageGallery items={images} onSelectedcard={onClickModal} />
+      <ImageModal
+        card={selectedCard}
+        onOpen={modalIsOpen}
+        onClose={closeModal}
+      />
       <LoadMoreBtn onClick={handleLoadMore} />
     </div>
   );

@@ -1,7 +1,7 @@
 export const SearchBar = ({ onSearch }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSearch(e.target.elements.query);
+    onSearch(e.target.elements.query.value);
     e.target.reset();
   };
 
