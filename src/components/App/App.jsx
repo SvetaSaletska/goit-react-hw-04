@@ -59,6 +59,7 @@ export const App = () => {
   }
 
   function closeModal() {
+    setSelectedcard(null);
     setIsOpen(false);
   }
 
@@ -73,11 +74,13 @@ export const App = () => {
       {error && <ErrorMessage />}
       {loading && <Loader />}
       <ImageGallery items={images} onSelectedcard={onClickModal} />
-      <ImageModal
-        card={selectedCard}
-        onOpen={modalIsOpen}
-        onClose={closeModal}
-      />
+      {selectedCard && (
+        <ImageModal
+          card={selectedCard}
+          onOpen={modalIsOpen}
+          onClose={closeModal}
+        />
+      )}
       <LoadMoreBtn onClick={handleLoadMore} />
     </div>
   );

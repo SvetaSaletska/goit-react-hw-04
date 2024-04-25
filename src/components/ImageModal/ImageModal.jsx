@@ -23,7 +23,7 @@ export const ImageModal = ({ onOpen, onClose, card }) => {
         contentLabel="Example Modal"
       >
         <div>
-          <img src={card.urls.regular} alt={card.alt_dscription} />
+          <img src={card.urls.regular} alt={card.alt_description} />
         </div>
         <button onClick={onClose}>Close Modal</button>
       </Modal>

@@ -1,3 +1,5 @@
+import css from "../SearchBar/SearchBar.module.css";
+
 export const SearchBar = ({ onSearch }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -7,7 +9,7 @@ export const SearchBar = ({ onSearch }) => {
 
   return (
     <header>
-      <form onSubmit={handleSubmit}>
+      <form className={css.form} onSubmit={handleSubmit}>
         <input
           type="text"
           name="query"
