@@ -1,7 +1,5 @@
 import Modal from "react-modal";
 
-Modal.setAppElement("#root");
-
 const customStyles = {
   content: {
     top: "50%",
@@ -12,10 +10,10 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
   },
 };
-export const ImageModal = ({ onOpen, onClose, card }) => {
+
+export const ImageModal = ({ onClose, card }) => {
   return (
     <div>
-      <button onClick={onOpen}>Open Modal</button>
       <Modal
         isOpen={card}
         onRequestClose={onClose}

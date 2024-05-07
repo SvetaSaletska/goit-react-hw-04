@@ -15,7 +15,7 @@ export const App = () => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [selectedCard, setSelectedcard] = useState(null);
-  const [modalIsOpen, setIsOpen] = useState(false);
+  const [setIsOpen] = useState(false);
 
   const searchImages = (newQuery) => {
     setQuery(newQuery);
@@ -54,14 +54,14 @@ export const App = () => {
     getImages();
   }, [query, page]);
 
-  function openModal() {
+  const openModal = () => {
     setIsOpen(true);
-  }
+  };
 
-  function closeModal() {
+  const closeModal = () => {
     setSelectedcard(null);
     setIsOpen(false);
-  }
+  };
 
   const onClickModal = (id) => {
     setSelectedcard(images.find((item) => item.id === id));
@@ -77,7 +77,7 @@ export const App = () => {
       {selectedCard && (
         <ImageModal
           card={selectedCard}
-          onOpen={modalIsOpen}
+          // onOpen={modalIsOpen}
           onClose={closeModal}
         />
       )}
