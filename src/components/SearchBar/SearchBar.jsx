@@ -11,19 +11,19 @@ export const SearchBar = ({ onSearch }) => {
   return (
     <header>
       <form className={css.form} onSubmit={handleSubmit}>
-        <label htmlFor={id}>
+        <div className={css.wrap}>
+          <input
+            className={css.input}
+            type="text"
+            name="query"
+            autoComplete="off"
+            autoFocus
+            placeholder="Search images and photos"
+          />
           <button type="submit" className={css.btn}>
             <CiSearch className={css.icon} />
           </button>
-        </label>
-        <input
-          className={css.input}
-          type="text"
-          name="query"
-          autoComplete="off"
-          autoFocus
-          placeholder="Search images and photos"
-        />
+        </div>
       </form>
     </header>
     // <form onSubmit={handleSubmit}>

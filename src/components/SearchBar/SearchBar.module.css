@@ -10,21 +10,30 @@
   background-color: #6568ab;
 }
 
+.wrap {
+  position: relative;
+}
+
 .input {
+  position: relative;
   height: 28px;
   width: 320px;
+  padding-left: 35px;
   border-radius: 5px;
   border-color: transparent;
 }
 
 .btn {
   display: flex;
+  position: absolute;
+  top: 2px;
+  left: 1px;
   justify-content: center;
   align-items: center;
   border-radius: 5px;
   transition: all 0.3s ease;
-  width: 50px;
-  height: 33px;
+  width: 30px;
+  height: 30px;
 }
 
 .icon {
