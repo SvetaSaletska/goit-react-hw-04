@@ -1,5 +1,6 @@
 import css from "../SearchBar/SearchBar.module.css";
 import { CiSearch } from "react-icons/ci";
+import toast, { Toaster } from "react-hot-toast";
 
 export const SearchBar = ({ onSearch }) => {
   const handleSubmit = (e) => {
@@ -20,6 +21,7 @@ export const SearchBar = ({ onSearch }) => {
             autoFocus
             placeholder="Search images and photos"
           />
+          {input.length}
           <button type="submit" className={css.btn}>
             <CiSearch className={css.icon} />
           </button>
