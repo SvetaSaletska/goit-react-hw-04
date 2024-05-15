@@ -10,6 +10,7 @@ export const fetchImages = async (query, page) => {
       query,
       page,
       hitsPerPage: 12,
+      orientation: "landscape",
     },
   });
   return response.data.results;

@@ -81,7 +81,9 @@ export const App = () => {
           onClose={closeModal}
         />
       )}
-      <LoadMoreBtn onClick={handleLoadMore} />
+      {images.length > 0 && !loading && (
+        <LoadMoreBtn onClick={handleLoadMore} />
+      )}
     </div>
   );
 };
