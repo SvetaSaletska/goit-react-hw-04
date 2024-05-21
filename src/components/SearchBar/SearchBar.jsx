@@ -1,10 +1,16 @@
 import css from "../SearchBar/SearchBar.module.css";
 import { CiSearch } from "react-icons/ci";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 export const SearchBar = ({ onSearch }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (e.target.elements.query.value.trim() === "") {
+      toast.error("EMPTY STRING");
+      return;
+    }
+
     onSearch(e.target.elements.query.value);
     e.target.reset();
   };
@@ -21,7 +27,6 @@ export const SearchBar = ({ onSearch }) => {
             autoFocus
             placeholder="Search images and photos"
           />
-          {input.length}
           <button type="submit" className={css.btn}>
             <CiSearch className={css.icon} />
           </button>

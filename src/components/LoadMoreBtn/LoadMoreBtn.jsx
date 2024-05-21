@@ -1,3 +1,3 @@
-export const LoadMoreBtn = (handleLoadMore) => {
-  return <button>Load More</button>;
+export const LoadMoreBtn = ({ onClick }) => {
+  return <button onClick={onClick}>Load More</button>;
 };

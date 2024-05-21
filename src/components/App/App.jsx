@@ -7,6 +7,7 @@ import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
 import { LoadMoreBtn } from "../LoadMoreBtn/LoadMoreBtn";
 import { fetchImages } from "../../articles-api";
 import { ImageModal } from "../ImageModal/ImageModal";
+import { Toaster } from "react-hot-toast";
 
 export const App = () => {
   const [query, setQuery] = useState("");
@@ -74,16 +75,11 @@ export const App = () => {
       {error && <ErrorMessage />}
       {loading && <Loader />}
       <ImageGallery items={images} onSelectedcard={onClickModal} />
-      {selectedCard && (
-        <ImageModal
-          card={selectedCard}
-          // onOpen={modalIsOpen}
-          onClose={closeModal}
-        />
-      )}
+      {selectedCard && <ImageModal card={selectedCard} onClose={closeModal} />}
       {images.length > 0 && !loading && (
         <LoadMoreBtn onClick={handleLoadMore} />
       )}
+      <Toaster />
     </div>
   );
 };
