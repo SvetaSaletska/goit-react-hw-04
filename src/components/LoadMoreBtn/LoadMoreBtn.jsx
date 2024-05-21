@@ -1,3 +1,9 @@
+import css from "../LoadMoreBtn/LoadMoreBtn.module.css";
+
 export const LoadMoreBtn = ({ onClick }) => {
-  return <button onClick={onClick}>Load More</button>;
+  return (
+    <button className={css.button} onClick={onClick}>
+      Load More
+    </button>
+  );
 };
